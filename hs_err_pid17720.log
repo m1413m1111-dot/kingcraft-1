@@ -1,0 +1,304 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 4294967296 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3714), pid=17720, tid=41096
+#
+# JRE version:  (21.0.10+7) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.10+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xms4G -Xmx16G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=true server.jar --nogui
+
+Host: Intel(R) Core(TM) Ultra 5 125H, 18 cores, 15G,  Windows 11 , 64 bit Build 26100 (10.0.26100.7705)
+Time: Mon Feb 16 19:50:19 2026 Arab Standard Time elapsed time: 0.514964 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000025437e71960):  JavaThread "Unknown thread" [_thread_in_vm, id=41096, stack(0x000000925d200000,0x000000925d300000) (1024K)]
+
+Stack: [0x000000925d200000,0x000000925d300000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6d7a39]
+V  [jvm.dll+0x8b4b26]
+V  [jvm.dll+0x8b70de]
+V  [jvm.dll+0x8b77c3]
+V  [jvm.dll+0x284346]
+V  [jvm.dll+0x6d4355]
+V  [jvm.dll+0x6c808a]
+V  [jvm.dll+0x35edb8]
+V  [jvm.dll+0x3669f6]
+V  [jvm.dll+0x3b7afe]
+V  [jvm.dll+0x3b7da8]
+V  [jvm.dll+0x332fbc]
+V  [jvm.dll+0x333b0b]
+V  [jvm.dll+0x87eadb]
+V  [jvm.dll+0x3c4a81]
+V  [jvm.dll+0x867d25]
+V  [jvm.dll+0x457b31]
+V  [jvm.dll+0x459721]
+C  [jli.dll+0x52d0]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0x8c40c]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffa9746a1c8, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x00000254524310a0 WorkerThread "GC Thread#0"                     [id=28460, stack(0x000000925d300000,0x000000925d400000) (1024K)]
+  0x000002543a3aa0e0 ConcurrentGCThread "G1 Main Marker"            [id=14856, stack(0x000000925d400000,0x000000925d500000) (1024K)]
+  0x000002543a3ab880 WorkerThread "G1 Conc#0"                       [id=40212, stack(0x000000925d500000,0x000000925d600000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa96b656a7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffa974de660] Heap_lock - owner thread: 0x0000025437e71960
+
+Heap address: 0x0000000400000000, size: 16384 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 64 size 144 Howl #buckets 8 coarsen threshold 14745 Howl Bitmap #cards 2048 size 272 coarsen threshold 1843 Card regions per heap region 1 cards per card region 16384
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000400000000, 0x0000000800000000)
+  region size 8192K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa96f513b9]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.078 Loaded shared library C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff6565d0000 - 0x00007ff6565de000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\java.exe
+0x00007ffb57760000 - 0x00007ffb579c8000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffb569f0000 - 0x00007ffb56ab9000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffb54fa0000 - 0x00007ffb55391000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffb54ba0000 - 0x00007ffb54ceb000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffb35be0000 - 0x00007ffb35bf8000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\jli.dll
+0x00007ffb34f90000 - 0x00007ffb34fae000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\VCRUNTIME140.dll
+0x00007ffb555c0000 - 0x00007ffb55786000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffb345f0000 - 0x00007ffb34883000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.7824_none_3e0870b2e3345462\COMCTL32.dll
+0x00007ffb554d0000 - 0x00007ffb554f7000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffb562d0000 - 0x00007ffb56379000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffb55590000 - 0x00007ffb555bb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffb553a0000 - 0x00007ffb554cb000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffb54ef0000 - 0x00007ffb54f93000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffb56ad0000 - 0x00007ffb56b01000 	C:\WINDOWS\System32\IMM32.DLL
+0x0000000059260000 - 0x000000005926d000 	C:\Program Files (x86)\360\Total Security\safemon\SafeWrapper.dll
+0x00007ffb57410000 - 0x00007ffb574c4000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffb56140000 - 0x00007ffb561e6000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffb56580000 - 0x00007ffb56698000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffb46440000 - 0x00007ffb46545000 	C:\Program Files (x86)\360\Total Security\safemon\libzdtp64.dll
+0x00007ffb56cb0000 - 0x00007ffb57402000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffb541c0000 - 0x00007ffb5432a000 	C:\WINDOWS\System32\wintypes.dll
+0x00007ffb55920000 - 0x00007ffb55ca6000 	C:\WINDOWS\System32\combase.dll
+0x00007ffb56720000 - 0x00007ffb56787000 	C:\WINDOWS\System32\SHLWAPI.dll
+0x00007ffb54330000 - 0x00007ffb54b93000 	C:\WINDOWS\System32\Windows.Storage.dll
+0x00007ffb53920000 - 0x00007ffb5392b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffb46270000 - 0x00007ffb4627c000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\vcruntime140_1.dll
+0x00007ffb28550000 - 0x00007ffb285dd000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\msvcp140.dll
+0x00007ffa96820000 - 0x00007ffa975c1000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\server\jvm.dll
+0x00007ffb567b0000 - 0x00007ffb56824000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffb53ea0000 - 0x00007ffb53efe000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffb44d80000 - 0x00007ffb44db5000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffb53e80000 - 0x00007ffb53e94000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffb52d70000 - 0x00007ffb52d8b000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffb42b40000 - 0x00007ffb42b4a000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\jimage.dll
+0x00007ffb52080000 - 0x00007ffb522c2000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffb561f0000 - 0x00007ffb562c7000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffb2caf0000 - 0x00007ffb2cb2b000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffb54e40000 - 0x00007ffb54ee5000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffb287c0000 - 0x00007ffb287e0000 	C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\java.dll
+
+JVMTI agents: none
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.7824_none_3e0870b2e3345462;C:\Program Files (x86)\360\Total Security\safemon;C:\Program Files\Eclipse Adoptium\jdk-21.0.10.7-hotspot\bin\server
+
+VM Arguments:
+jvm_args: -Xms4G -Xmx16G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=true 
+java_command: server.jar --nogui
+java_class_path (initial): server.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     bool AlwaysPreTouch                           = true                                      {product} {command line}
+     bool AlwaysTenure                             = false                                     {product} {command line}
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 4                                         {product} {ergonomic}
+     bool DisableExplicitGC                        = true                                      {product} {command line}
+     uint G1ConcRefinementThreads                  = 14                                        {product} {ergonomic}
+     uint G1EagerReclaimRemSetThreshold            = 64                                   {experimental} {ergonomic}
+   size_t G1HeapRegionSize                         = 8388608                                   {product} {command line}
+    uintx G1HeapWastePercent                       = 5                                         {product} {command line}
+    uintx G1MaxNewSizePercent                      = 40                                   {experimental} {command line}
+    uintx G1MixedGCCountTarget                     = 4                                         {product} {command line}
+    uintx G1MixedGCLiveThresholdPercent            = 90                                   {experimental} {command line}
+    uintx G1NewSizePercent                         = 30                                   {experimental} {command line}
+     intx G1RSetUpdatingPauseTimePercent           = 5                                         {product} {command line}
+     uint G1RemSetArrayOfCardsEntries              = 64                                   {experimental} {ergonomic}
+     uint G1RemSetHowlMaxNumBuckets                = 8                                    {experimental} {ergonomic}
+     uint G1RemSetHowlNumBuckets                   = 8                                    {experimental} {ergonomic}
+    uintx G1ReservePercent                         = 20                                        {product} {command line}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 4294967296                                {product} {command line}
+    uintx InitialTenuringThreshold                 = 1                                         {product} {ergonomic}
+    uintx InitiatingHeapOccupancyPercent           = 15                                        {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+    uintx MaxGCPauseMillis                         = 200                                       {product} {command line}
+   size_t MaxHeapSize                              = 17179869184                               {product} {command line}
+    uintx MaxTenuringThreshold                     = 1                                         {product} {command line}
+   size_t MinHeapDeltaBytes                        = 8388608                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 4294967296                                {product} {command line}
+     bool NeverTenure                              = false                                     {product} {command line}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+     bool ParallelRefProcEnabled                   = true                                      {product} {command line}
+     bool PerfDisableSharedMem                     = true                                      {product} {command line}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 17179869184                            {manageable} {ergonomic}
+    uintx SurvivorRatio                            = 32                                        {product} {command line}
+     bool UnlockExperimentalVMOptions              = true                                 {experimental} {command line}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {command line}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Release file:
+<release file has not been read>
+Environment Variables:
+PATH=C:\Users\m1413_9u4\.codex\tmp\arg0\codex-arg0e2AIvo;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\HP\HP One Agent;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\playit_gg\bin\;C:\Users\m1413_9u4\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\m1413_9u4\AppData\Local\Programs\Python\Python311\;C:\Users\m1413_9u4\AppData\Local\Microsoft\WindowsApps;C:\Users\m1413_9u4\.dotnet\tools;C:\Users\m1413_9u4\AppData\Local\Programs\Ollama;C:\Users\m1413_9u4\AppData\Roaming\npm;C:\Users\m1413_9u4\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\m1413_9u4\.vscode\extensions\openai.chatgpt-0.4.74-win32-x64\bin\windows-x86_64
+USERNAME=m1413_9u4
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 170 Stepping 4, GenuineIntel
+TMP=C:\Users\M1413_~1\AppData\Local\Temp
+TEMP=C:\Users\M1413_~1\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.7705)
+OS uptime: 4 days 7:55 hours
+
+CPU: total 18 (initial active 18) (9 cores per cpu, 2 threads per core) family 6 model 170 stepping 4 microcode 0x24, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, serialize, rdtscp, rdpid, fsrm, f16c, pku, cet_ibt, cet_ss
+Processor Information for processor 0
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 1
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 2
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 3
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 4
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 5
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 6
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 7
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 8
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 9
+  Max Mhz: 3600, Current Mhz: 700, Mhz Limit: 684
+Processor Information for processor 10
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 11
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 12
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 13
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 14
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 15
+  Max Mhz: 1200, Current Mhz: 1200, Mhz Limit: 1200
+Processor Information for processor 16
+  Max Mhz: 2500, Current Mhz: 700, Mhz Limit: 700
+Processor Information for processor 17
+  Max Mhz: 2500, Current Mhz: 700, Mhz Limit: 700
+
+Memory: 4k page, system-wide physical 15870M (363M free)
+TotalPageFile size 36671M (AvailPageFile size 658M)
+current process WorkingSet (physical memory assigned to process): 23M, peak: 23M
+current process commit charge ("private bytes"): 74M, peak: 4170M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.10+7-LTS) for windows-amd64 JRE (21.0.10+7-LTS), built on 2026-01-20T00:00:00Z by "admin" with MS VC++ 17.12 (VS2022)
+
+END.

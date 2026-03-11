@@ -1,0 +1,41 @@
+# Server binaries
+server.jar
+paper-*.jar
+
+# Worlds (large)
+world/
+world_nether/
+world_the_end/
+
+# Logs and crash reports
+logs/
+crash-reports/
+hs_err_pid*.log
+*.log
+
+# Caches/runtime
+cache/
+libraries/
+versions/
+plugins/.paper-remapped/
+plugins/bStats/
+plugins/*/cache/
+plugins/*/logs/
+plugins/dynmap/web/
+plugins/dynmap/ids-by-ip.txt
+plugins/SkinsRestorer/locales/
+plugins/SkinsRestorer/recommendations.json
+plugins/spark/tmp-client/
+
+# Player/admin data (privacy)
+ops.json
+whitelist.json
+usercache.json
+banned-*.json
+
+# Keys/tokens
+plugins/floodgate/key.pem
+plugins/Geyser-Spigot/saved-refresh-tokens.json
+
+# Plugin binaries
+plugins/*.jar
